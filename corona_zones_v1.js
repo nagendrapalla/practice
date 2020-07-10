@@ -1,8 +1,25 @@
-"use strict";
-
 let output = 0;
-let RG_COUNT = 0;
 const MODULO = 1000000007;
+const nop = 2;
+const k = nop;
+const zones = ['R', 'G', 'O'];
+const zonesLength = zones.length;
+const LIMITS = {
+    ARO: 1,
+    ARG: 1,
+    AOR: 1,
+    AOG: 1,
+    AGR: 0,
+    AGO: 0
+}
+
+const start = new Date().getTime();
+check(zones, "", zonesLength, k, LIMITS, nop);
+const end = new Date().getTime();
+
+const time = (end - start) / 1000;
+console.log(time)
+console.log(output);
 
 function checkMaxLength(prefix, LIMITS, nop) {
     if(nop === prefix.length) {
@@ -21,21 +38,7 @@ function checkMaxLength(prefix, LIMITS, nop) {
     return true;
 }
 
-const nop = 1;
-const k = nop;
-const zones = ['R', 'G', 'O'];
-const zonesLength = zones.length;
-const LIMITS = {
-    ARO: 1,
-    ARG: 1,
-    AOR: 1,
-    AOG: 1,
-    AGR: 0,
-    AGO: 0
-}
-
-const start = new Date().getTime();
-let check = function(zones, prefix, n, k, limits, nop) {
+function check(zones, prefix, n, k, limits, nop) {
     if (k == 0) {
         output = (output + 1) % MODULO;
         return;
@@ -47,11 +50,4 @@ let check = function(zones, prefix, n, k, limits, nop) {
             check(zones, newPrefix, n, k - 1, limits, nop);
         }
     }
-};
-
-check(zones, "", zonesLength, k, LIMITS, nop);
-const end = new Date().getTime();
-const time = (end - start) / 1000;
-console.log(time)
-
-console.log(output);
+}
