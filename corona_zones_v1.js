@@ -35,6 +35,7 @@ function check(zones, prefix, n, k) {
     if (k == 0) {
         if (checkMaxLength(prefix)) {            
             output = (output + 1) % MODULO;
+            console.log(prefix);
         }    
         return;
     }
